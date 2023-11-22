@@ -1,4 +1,4 @@
-# Pricing_Exotic_Options
+# Pricing Asian Options
 
 Opções asiáticas são um tipo de derivativo financeiro em que o prêmio é definido pela média do preço do ativo subjacente ao longo de um período específico, em vez do seu preço em um único ponto no tempo. Essas opções são comumente utilizadas para reduzir o impacto da volatilidade de curto prazo e são populares em mercados com alta volatilidade. 
 
@@ -129,15 +129,17 @@ Vale ressaltar que a escolha de $p_X(x)$ é inteiramente discricionária, e a pr
 
 Para estimar o valor de uma opção asiática usando simulações de Monte Carlo, as seguintes etapas seriam realizadas
 
-\begin{align*}
-&\text{Definir} \Delta t \leftarrow \frac{T}{n} \\
-&\textbf{Para cada} i \textbf{de} 1 \textbf{a} m: \\
-&\quad\text{Definir} S \leftarrow S_0 \\
-&\quad\textbf{Para cada} j \textbf{e} 1 \textbf{a} n: \\
-&\quad\quad\text{Gerar} Z \text{de uma distribuição Normal padrão,} Z \sim \mathcal{N}(0, 1) \\
-&\quad\quad\text{Atualizar} S \text{usando a fórmula:} S_{t+1} \gets S_t + r S_t \Delta t + \sigma S_t \sqrt{\Delta t}Z \\
-&\quad\text{Calcular} \overline{S}_i = \frac{1}{n} \sum_{j=1}^{n} S_{t_j} \\
-&\quad\text{Definir} C_i \leftarrow \max(\overline{S}_i - K, 0) \\
-&\text{Calcular} C = \frac{1}{m} \sum_{i=1}^{m} V_i
-\end{align*}
+Definir $ \Delta t $ como $ \frac{T}{n} $.
+
+**Para cada** $ i $ **de** 1 **a** $ m $:
+  - Definir $ S $ como $ S_0 $.
+  
+  **Para cada** $ j $ **de** 1 **a** $ n $:
+    - Gerar $ Z $ de uma distribuição Normal padrão, $ Z \sim \mathcal{N}(0, 1) $.
+    - Atualizar $ S $ usando a fórmula: $ S_{t+1} \gets S_t + r S_t \Delta t + \sigma S_t \sqrt{\Delta t}Z $.
+
+  - Calcular $ \overline{S}_i = \frac{1}{n} \sum_{j=1}^{n} S_{t_j} $.
+  - Definir $ C_i $ como $ \max(\overline{S}_i - K, 0) $.
+
+Calcular $ C = \frac{1}{m} \sum_{i=1}^{m} C_i $.
 
