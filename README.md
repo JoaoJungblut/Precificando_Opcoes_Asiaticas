@@ -92,7 +92,7 @@ onde $Z$ representa uma variável aleatória Normal padrão para modelar o movim
 
 O esquema para implementar o método de Euler-Maruyama segue como:
 
-**Para $$ j $$ de 1 a $$ n $$:**
+**Para** $j$ **de** $1$ **a** $n$ **:**
    - Gerar $Z$ a partir de uma distribuição Normal padrão, $Z \sim \mathcal{N}(0, 1)$.
    - Atualizar $S$ usando a fórmula: $S_{t+1} \gets S_t + r S_t \Delta t + \sigma S_t \sqrt{\Delta t}Z$.
 
