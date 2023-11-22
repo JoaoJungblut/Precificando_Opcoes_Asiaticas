@@ -192,13 +192,13 @@ $$ d\phi_t = \frac{1}{T}dt + \left(\frac{1}{T} \int_0^t S_u du - K\right)\left(\
 
 $$ d\phi_t = \left(\frac{1}{T} - r \phi_t\right)dt - \sigma \phi_t \left(dW_t^{\mathbb{Q}} - \sigma dt\right) $$
 
-A derivada de Radon-Nikodym é definida como $\frac{d \mathbb{Q*}}{d \mathbb{Q}} = \frac{e^{-rT} S_t}{S_0}$, e assim obtemos:
+A derivada de Radon-Nikodym é definida como $\frac{d \mathbb{Q^{*}}{d \mathbb{Q}} = \frac{e^{-rT} S_t}{S_0}$, e assim obtemos:
 
 $$ \mathbb{Q*}(A) = \int_A e^{-\frac{\sigma^2}{2}T + \sigma dW^{\mathbb{Q}}} d \mathbb{Q} $$
 
-O Teorema de Girsanov assegura que sob $\mathbb{Q*}$, $W_t^{\mathbb{Q*}} = W_t^{\mathbb{Q}} - \sigma t$ é um movimento Browniano. Portanto, a equação torna-se:
+O Teorema de Girsanov assegura que sob $\mathbb{Q^{*}}$, $W_t^{\mathbb{Q^{*}}} = W_t^{\mathbb{Q}} - \sigma t$ é um movimento Browniano. Portanto, a equação torna-se:
 
-$$ d\phi_t = \left( \frac{1}{T} - r\phi_t \right) dt - \sigma \phi_t dW_t^{\mathbb{Q*}}.$$
+$$ d\phi_t = \left( \frac{1}{T} - r\phi_t \right) dt - \sigma \phi_t dW_t^{\mathbb{Q^{*}}.$$
 
 A solução para a EDP
 
@@ -206,7 +206,7 @@ $$ \frac{\partial C}{\partial t} + \left( \frac{1}{T} - r\phi_t \right) \frac{\p
 
 segue do Teorema de Feynman-Kac, o que implica:
 
-$$ C = \mathbb{E^{\mathbb{Q*}}}[\max(\phi_t, 0)] $$
+$$ C = \mathbb{E^{\mathbb{Q^{*}}}[\max(\phi_t, 0)] $$
 
 
 ### Referências
