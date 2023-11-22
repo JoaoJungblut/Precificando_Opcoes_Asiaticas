@@ -35,7 +35,7 @@ $$ \frac{dS_t}{S_t} = r dt + \sigma(\frac{\mu - r}{\sigma} dt + dW_t^{\mathbb{P}
 
 De acordo com o teorema de Girsanov, podemos definir um novo processo de movimento Browniano, denotado como $dW_t^{\mathbb{Q}}$, da seguinte forma:
 
-$$ dW_t^{\mathbb{Q}} := \lambda t + dW_t^{\mathbb{P}}, \quad \text{where} \quad \lambda = \frac{\mu - r}{\sigma} $$
+$$ dW_t^{\mathbb{Q}} := \lambda t + dW_t^{\mathbb{P}}, \quad \text{onde} \quad \lambda = \frac{\mu - r}{\sigma} $$
 
 Essa transformação resulta na seguinte dinâmica de risco-neutro para o ativo arriscado:
 
