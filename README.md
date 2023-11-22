@@ -123,7 +123,7 @@ Se possuirmos amostras i.i.d. $x_1, \ldots, x_N$, então, relacionado à SLLN, �
 
 $$ \frac{1}{m}\sum_{i=1}^{m} f(x_i) p_X(x_i) \rightarrow \int \frac{f(x)}{p_X(x)} p_X(x) dx = \int f(x) dx. $$
 
-Essencialmente, estamos estimando a integral $\int f(x)dx$ por meio do uso de $\frac{1}{m}\sum_{i=1}^{m}f(x_i)p_X(x_i)$.
+Essencialmente, estamos estimando a integral $\int f(x)dx$ por meio do uso de $\frac{1}{m} \sum_{i=1}^{m}f(x_i)p_X(x_i)$.
 
 Vale ressaltar que a escolha de $p_X(x)$ é inteiramente discricionária, e a precisão da estimativa é notavelmente influenciada pela escolha da distribuição de amostragem. Dentro desse framework, conceitos pertinentes incluem técnicas como amostragem e técnicas de redução de variância.
 
