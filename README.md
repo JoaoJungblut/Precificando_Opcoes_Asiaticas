@@ -19,7 +19,7 @@ Vale notar que o preço da opção asiática é *path-dependent* (sensível ao c
 
 ### Medida de Risco-Neutro 
 
-Antes de mais nada, precisamos entender como obtemos essa expressão. Vamos começar adotando as mesmas suposições utilizadas no modelo de Black-Scholes. Neste quadro econômico, existem dois ativos-chave: um ativo livre de risco, representado por $B_t$, que se valoriza a uma taxa de juros constante $r$ ao longo do tempo, de acordo com a fórmula $B_t = B_0 e^{rt}$; e um ativo arriscado, representado por $S_t$. O ativo arriscado apresenta um retorno esperado de $\mathbb{E}\left[\frac{dS_t}{S_t}\right] = \mu dt$ e uma volatilidade de $\mathbb{V}\left[\frac{dS_t}{S_t}\right] = \sigma^2 t$.
+Antes de mais nada, precisamos entender como obtemos essa expressão. Vamos começar adotando as mesmas suposições utilizadas no modelo de Black-Scholes. Neste quadro econômico, existem dois ativos-chave: um ativo livre de risco, representado por $B_t$, que se valoriza a uma taxa de juros constante $r$ ao longo do tempo, de acordo com a fórmula $B_t = B_0 e^{rt}$; e um ativo arriscado, representado por $S_t$. O ativo arriscado apresenta um retorno esperado de $\mathbb{E}\left[\frac{dS_t}{S_t}\right] = \mu dt$ e uma volatilidade de $\mathbb{C}\left[\frac{dS_t}{S_t}\right] = \sigma^2 t$.
 
 A dinâmica do preço do ativo arriscado sob a medida do mundo real, denotada como $\mathbb{P}$, é regida pela seguinte equação diferencial estocástica:
 
