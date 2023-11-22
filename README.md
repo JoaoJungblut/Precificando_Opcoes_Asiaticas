@@ -139,3 +139,76 @@ Para estimar o valor de uma opção asiática usando simulações de Monte Carlo
   - Definir $ C_i $ como $ \max(\overline{S}_i - K, 0) $.
 - Calcular $ C = \frac{1}{m} \sum_{i=1}^{m} C_i $.
 
+
+### Abordagem com Equações Diferenciais Parciais
+
+Por mera curiosidade, vou explorar a abordagem usando Equações Diferenciais Parciais (EDPs) para precificar uma opção asiática. Vamos iniciar com o mesmo conjunto de considerações.
+
+Considere uma opção asiática com um preço de exercício fixo, escrita sobre uma ação com preço $S_t$ no tempo $t$, que pode ser exercida no tempo $T$ com um preço de exercício de $K$, determinado pela média aritmética ao longo do período $[t_0, T]$. Nesse cenário, podemos definir precisamente o payoff para uma opção asiática com preço de exercício fixo da seguinte forma:
+
+$$ \text{max} \left( \frac{1}{T - t_0}\int_{t_0}^{T}S_t dt - K, 0 \right) $$
+
+Utilizando a equação fornecida,
+
+$$ C(S, t) = e^{-r(T - t)} \mathbb{E}^{\mathbb{Q}} \left[ \text{max} \left( \frac{1}{T - t_0}\int_{t_0}^{T}S_t dt - K, 0 \right) \right] $$
+
+A precificação da opção de compra é dependente do caminho, o que significa que não podemos contar com a propriedade de Markov, já que $C(S, t)$ depende do caminho completo de $S_t$. Além disso, é crucial introduzir um segundo processo para representar o estado aumentado de $S_t$ denominado como:
+
+$$ I(t) = \int_0^t S_u du $$
+
+Consequentemente, a Equação Diferencial Estocástica que governa $I(t)$ é dada por:
+
+$$ dI(t) = S_t dt. $$
+
+Isso implica na existência da função:
+
+$$ C(S, I, t) = e^{-r(T-t)} \mathbb{E}^{\mathbb{Q}} \left[ \max{ \left( \frac{1}{T}I(t) - K, 0 \right) } \right]$$
+
+O processo do valor presente da opção asiática conforma-se a um Martingale dentro da medida de risco-neutro. A partir da equação acima, podemos derivar a EDP. Nesse cenário, $dS(t) = r S(t) dt + \sigma S(t) dW^{\mathbb{Q}}(t)$ e $dS \times dS = \sigma^2 S^2 dt$. Notavelmente, uma vez que $dI \times dI = 0$, segue-se que $dS \times dI = 0$. Ao examinar a variação de $C(S, I, t)$, podemos obter a seguinte expressão:
+
+$$ \frac{\partial C}{\partial t} + \frac{1}{2} \sigma^2 S^2\frac{\partial^2 C}{\partial S^2} + S \frac{\partial C}{\partial I} + rS \frac{\partial C}{\partial S} - rC = 0 $$
+
+A equação acima pode ser simplificada para uma EDP de um estado, o que simplifica o processo, pois o preço da opção é homogêneo em $S_t$ e $\frac{1}{T}\int_0^t S_u du - K$. O processo toma a seguinte forma para $T=t$:
+
+$$ \phi_t = \frac{\int_0^t S_u du - K}{S_t} $$
+
+Ao aplicar o Lema de Itô para encontrar a equação diferencial estocástica que governa a dinâmica sob $\mathbb{Q}$, podemos derivar:
+
+\begin{align*}
+d\phi_t &= \frac{1}{S_t}d\left(\frac{1}{T} \int_0^t S_u du - K\right) + \left(\frac{1}{T} \int_0^t S_u du - K\right)d\left(\frac{1}{S_t}\right) + d\left(\frac{1}{T} \int_0^t S_u du - K\right)d\left(\frac{1}{T}\right) \\
+&= \frac{1}{S_t} \frac{1}{T} S_t dt + \left(\frac{1}{T} \int_0^t S_u du - K\right) d\left(\frac{1}{S_t}\right) + \left(\frac{1}{T} S_t dt\right) d\left(\frac{1}{S_t}\right)
+\end{align*}
+
+Aplicando o Lema de Itô ao termo $d\left(\frac{1}{S_t}\right)$, obtemos:
+
+\begin{align*}
+d\left(\frac{1}{S_t}\right) &= - \frac{1}{S_t^2}dS_t + \frac{1}{2} \frac{2}{S_t^3} (dS_t)^2 \\
+&= - \frac{1}{S_t^2}(rS_t dt + \sigma S_t dW_t^{\mathbb{Q}}) - \frac{1}{S_t^3}\sigma^2 S_t^2 dt \\
+&= - \frac{1}{S_t} \left((\sigma^2 - r)dt - \sigma dW_t^{\mathbb{Q}}\right)
+\end{align*}
+
+Dado que $dt \times dt = 0$, $dt \times dW_t^{\mathbb{Q}} = 0$, e $dW_t^{\mathbb{Q}} \times dW_t^{\mathbb{Q}} = 0$, temos:
+
+\begin{align*}
+d\phi_t &= \frac{1}{T}dt + \left(\frac{1}{T} \int_0^t S_u du - K\right)\left(\frac{1}{S_t}(\sigma^2 - r)dt + \sigma dW_t^{\mathbb{Q}}\right) \\
+&= \left(\frac{1}{T} - r \phi_t\right)dt - \sigma \phi_t \left(dW_t^{\mathbb{Q}} - \sigma dt\right)
+\end{align*}
+
+A derivada de Radon-Nikodym é definida como $\frac{d \mathbb{Q*}}{d \mathbb{Q}} = \frac{e^{-rT} S_t}{S_0}$, e assim obtemos:
+
+$$ \mathbb{Q*}(A) = \int_A e^{-\frac{\sigma^2}{2}T + \sigma dW^{\mathbb{Q}}} d \mathbb{Q} $$
+
+O Teorema de Girsanov assegura que sob $\mathbb{Q*}$, $W_t^{\mathbb{Q*}} = W_t^{\mathbb{Q}} - \sigma t$ é um movimento Browniano. Portanto, a equação torna-se:
+
+$$ d\phi_t = \left( \frac{1}{T} - r\phi_t \right) dt - \sigma \phi_t dW_t^{\mathbb{Q*}}.$$
+
+A solução para a EDP
+
+$$ \frac{\partial C}{\partial t} + \left( \frac{1}{T} - r\phi_t \right) \frac{\partial C}{\partial \phi_t} + \frac{1}{2}\sigma^2 \phi_t^2 \frac{\partial^2 C}{\partial \phi_t^2} = 0, $$
+
+segue do Teorema de Feynman-Kac, o que implica:
+
+\begin{align*}
+C &= \mathbb{E^{\mathbb{Q*}}}[\max(\phi_t, 0)]
+\end{align*}
+
