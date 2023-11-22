@@ -174,25 +174,19 @@ $$ \phi_t = \frac{\int_0^t S_u du - K}{S_t} $$
 
 Ao aplicar o Lema de Itô para encontrar a equação diferencial estocástica que governa a dinâmica sob $\mathbb{Q}$, podemos derivar:
 
-\begin{align*}
-d\phi_t &= \frac{1}{S_t}d\left(\frac{1}{T} \int_0^t S_u du - K\right) + \left(\frac{1}{T} \int_0^t S_u du - K\right)d\left(\frac{1}{S_t}\right) + d\left(\frac{1}{T} \int_0^t S_u du - K\right)d\left(\frac{1}{T}\right) \\
-&= \frac{1}{S_t} \frac{1}{T} S_t dt + \left(\frac{1}{T} \int_0^t S_u du - K\right) d\left(\frac{1}{S_t}\right) + \left(\frac{1}{T} S_t dt\right) d\left(\frac{1}{S_t}\right)
-\end{align*}
+$$ d\phi_t = \frac{1}{S_t}d\left(\frac{1}{T} \int_0^t S_u du - K\right) + \left(\frac{1}{T} \int_0^t S_u du - K\right)d\left(\frac{1}{S_t}\right) + d\left(\frac{1}{T} \int_0^t S_u du - K\right)d\left(\frac{1}{T}\right) $$
+$$ d\phi_t = \frac{1}{S_t} \frac{1}{T} S_t dt + \left(\frac{1}{T} \int_0^t S_u du - K\right) d\left(\frac{1}{S_t}\right) + \left(\frac{1}{T} S_t dt\right) d\left(\frac{1}{S_t}\right) $$
 
 Aplicando o Lema de Itô ao termo $d\left(\frac{1}{S_t}\right)$, obtemos:
 
-\begin{align*}
-d\left(\frac{1}{S_t}\right) &= - \frac{1}{S_t^2}dS_t + \frac{1}{2} \frac{2}{S_t^3} (dS_t)^2 \\
-&= - \frac{1}{S_t^2}(rS_t dt + \sigma S_t dW_t^{\mathbb{Q}}) - \frac{1}{S_t^3}\sigma^2 S_t^2 dt \\
-&= - \frac{1}{S_t} \left((\sigma^2 - r)dt - \sigma dW_t^{\mathbb{Q}}\right)
-\end{align*}
+$$ d\left(\frac{1}{S_t}\right) = - \frac{1}{S_t^2}dS_t + \frac{1}{2} \frac{2}{S_t^3} (dS_t)^2 $$
+$$ d\left(\frac{1}{S_t}\right) = - \frac{1}{S_t^2}(rS_t dt + \sigma S_t dW_t^{\mathbb{Q}}) - \frac{1}{S_t^3}\sigma^2 S_t^2 dt $$
+$$ d\left(\frac{1}{S_t}\right) = - \frac{1}{S_t} \left((\sigma^2 - r)dt - \sigma dW_t^{\mathbb{Q}}\right) $$
 
 Dado que $dt \times dt = 0$, $dt \times dW_t^{\mathbb{Q}} = 0$, e $dW_t^{\mathbb{Q}} \times dW_t^{\mathbb{Q}} = 0$, temos:
 
-\begin{align*}
-d\phi_t &= \frac{1}{T}dt + \left(\frac{1}{T} \int_0^t S_u du - K\right)\left(\frac{1}{S_t}(\sigma^2 - r)dt + \sigma dW_t^{\mathbb{Q}}\right) \\
-&= \left(\frac{1}{T} - r \phi_t\right)dt - \sigma \phi_t \left(dW_t^{\mathbb{Q}} - \sigma dt\right)
-\end{align*}
+$$ d\phi_t = \frac{1}{T}dt + \left(\frac{1}{T} \int_0^t S_u du - K\right)\left(\frac{1}{S_t}(\sigma^2 - r)dt + \sigma dW_t^{\mathbb{Q}}\right) $$
+$$ d\phi_t = \left(\frac{1}{T} - r \phi_t\right)dt - \sigma \phi_t \left(dW_t^{\mathbb{Q}} - \sigma dt\right) $$
 
 A derivada de Radon-Nikodym é definida como $\frac{d \mathbb{Q*}}{d \mathbb{Q}} = \frac{e^{-rT} S_t}{S_0}$, e assim obtemos:
 
@@ -208,7 +202,17 @@ $$ \frac{\partial C}{\partial t} + \left( \frac{1}{T} - r\phi_t \right) \frac{\p
 
 segue do Teorema de Feynman-Kac, o que implica:
 
-\begin{align*}
-C &= \mathbb{E^{\mathbb{Q*}}}[\max(\phi_t, 0)]
-\end{align*}
+$$ C = \mathbb{E^{\mathbb{Q*}}}[\max(\phi_t, 0)] $$
 
+
+### Referências
+
+1. **JAHNKE, T.**. *Numerical Methods in Mathematical Finance*. Karlsruher Institut fur Technologie (KIT), Chapter 5.
+
+2. **MUDZIMBEBWE, W.**. *Pricing Methods for Asian Options*. Department of Mathematics and Applied Mathematics, University of the Western Cape, Chapter 5.
+
+3. **KLOEDEN, P. E., & PLATEN, E.**. *Numerical Solution of Stochastic Differential Equations*. Springer, Chapters 9 & 10.
+
+4. **SHREVE, S. E.**. *Stochastic Calculus for Finance II: Continuous-Time Models*. Springer, Chapter 7.
+
+5. **WILLMOT, P.**. *Quantitative Finance*, Chapter 24 & 80. John Sons and Willey.
