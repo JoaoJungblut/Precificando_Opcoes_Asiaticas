@@ -129,17 +129,13 @@ Vale ressaltar que a escolha de $p_X(x)$ é inteiramente discricionária, e a pr
 
 Para estimar o valor de uma opção asiática usando simulações de Monte Carlo, as seguintes etapas seriam realizadas
 
-Definir $ \Delta t $ como $ \frac{T}{n} $.
-
-**Para cada** $ i $ **de** 1 **a** $ m $:
+- Definir $ \Delta t $ como $ \frac{T}{n} $.
+- **Para cada** $ i $ **de** 1 **a** $ m $:
   - Definir $ S $ como $ S_0 $.
-  
-  **Para cada** $ j $ **de** 1 **a** $ n $:
+  - **Para cada** $ j $ **de** 1 **a** $ n $:
     - Gerar $ Z $ de uma distribuição Normal padrão, $ Z \sim \mathcal{N}(0, 1) $.
     - Atualizar $ S $ usando a fórmula: $ S_{t+1} \gets S_t + r S_t \Delta t + \sigma S_t \sqrt{\Delta t}Z $.
-
   - Calcular $ \overline{S}_i = \frac{1}{n} \sum_{j=1}^{n} S_{t_j} $.
   - Definir $ C_i $ como $ \max(\overline{S}_i - K, 0) $.
-
-Calcular $ C = \frac{1}{m} \sum_{i=1}^{m} C_i $.
+- Calcular $ C = \frac{1}{m} \sum_{i=1}^{m} C_i $.
 
