@@ -1,4 +1,4 @@
-# Pricing Asian Options
+# Precificando Opções Asiáticas
 
 Opções asiáticas são um tipo de derivativo financeiro em que o prêmio é definido pela média do preço do ativo subjacente ao longo de um período específico, em vez do seu preço em um único ponto no tempo. Essas opções são comumente utilizadas para reduzir o impacto da volatilidade de curto prazo e são populares em mercados com alta volatilidade. 
 
