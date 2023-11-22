@@ -100,3 +100,44 @@ Esse processo iterativo nos permite aproximar os valores de $S$ ao longo de um i
 
 
 ### Simulação de Monte Carlo
+
+Monte Carlo (MC) é um algoritmo prontamente implementável utilizado para aproximar expectativas. Sua eficácia baseia-se no princípio conhecido como a Lei Forte dos Grandes Números (SLLN). Vamos explorar a expectativa de uma variável aleatória $X$, denotada como $\mathbb{E}[X]$, expressa como uma integral:
+
+$$ \mathbb{E}[X] = \int x p_X(x) dx $$
+
+Agora, se pudéssemos obter numerosas amostras independentes e identicamente distribuídas (i.i.d.), $x_1, x_2, \ldots, x_N$, da distribuição de probabilidade $p_X$, onde cada $x_i$ adere à distribuição $p_X$. À medida que o número de amostras, denotado como $m$, tende para o infinito, de acordo com a Lei dos Grandes Números:
+
+$$ \frac{1}{m}\sum_{i=1}^{m}x_i \rightarrow \mathbb{E}[X] = \int x p_X(x)dx $$
+
+Essencialmente, observamos:
+
+$$ \frac{1}{m}\sum_{i=1}^{m}x_i \rightarrow \int x p_X(x) \quad \text{(SLLN)} $$
+
+Agora, considere uma integral envolvendo uma função $f(x)$ em relação a $x$:
+
+$$\int f(x) dx = \int \frac{f(x)}{p_X(x)} p_X(x) dx $$
+
+Isso pressupõe que $p_X(x)$ permanece não nulo ao longo do intervalo de integração.
+
+Se possuirmos amostras i.i.d. $x_1, \ldots, x_N$, então, relacionado à SLLN, à medida que o tamanho da amostra $m$ cresce:
+
+$$ \frac{1}{m}\sum_{i=1}^{m} f(x_i) p_X(x_i) \rightarrow \int \frac{f(x)}{p_X(x)} p_X(x) dx = \int f(x) dx. $$
+
+Essencialmente, estamos estimando a integral $\int f(x)dx$ por meio do uso de $\frac{1}{m}\sum_{i=1}^{m}f(x_i)p_X(x_i)$.
+
+Vale ressaltar que a escolha de $p_X(x)$ é inteiramente discricionária, e a precisão da estimativa é notavelmente influenciada pela escolha da distribuição de amostragem. Dentro desse framework, conceitos pertinentes incluem técnicas como amostragem e técnicas de redução de variância.
+
+Para estimar o valor de uma opção asiática usando simulações de Monte Carlo, as seguintes etapas seriam realizadas
+
+\begin{align*}
+&\text{Definir} \Delta t \leftarrow \frac{T}{n} \\
+&\textbf{Para cada} i \textbf{de} 1 \textbf{a} m: \\
+&\quad\text{Definir} S \leftarrow S_0 \\
+&\quad\textbf{Para cada} j \textbf{e} 1 \textbf{a} n: \\
+&\quad\quad\text{Gerar} Z \text{de uma distribuição Normal padrão,} Z \sim \mathcal{N}(0, 1) \\
+&\quad\quad\text{Atualizar} S \text{usando a fórmula:} S_{t+1} \gets S_t + r S_t \Delta t + \sigma S_t \sqrt{\Delta t}Z \\
+&\quad\text{Calcular} \overline{S}_i = \frac{1}{n} \sum_{j=1}^{n} S_{t_j} \\
+&\quad\text{Definir} C_i \leftarrow \max(\overline{S}_i - K, 0) \\
+&\text{Calcular} C = \frac{1}{m} \sum_{i=1}^{m} V_i
+\end{align*}
+
